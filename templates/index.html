@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GestionPro — Suivi de projets</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <!-- Chart.js : bibliotheque de graphiques (chargee depuis un CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="entete">
+    <div>
+      <h1>GestionPro</h1>
+      <p>Tableau de bord et suivi des tâches de projet</p>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== TABLEAU DE BORD (KPI + graphiques) ===== -->
+    <section class="dashboard">
+      <div class="kpis">
+        <div class="kpi"><span class="kpi-valeur" id="kpi-total">0</span><span class="kpi-label">Tâches au total</span></div>
+        <div class="kpi"><span class="kpi-valeur" id="kpi-terminees">0</span><span class="kpi-label">Terminées</span></div>
+        <div class="kpi"><span class="kpi-valeur" id="kpi-completion">0%</span><span class="kpi-label">Taux d'achèvement</span></div>
+        <div class="kpi"><span class="kpi-valeur" id="kpi-avancement">0%</span><span class="kpi-label">Avancement moyen</span></div>
+      </div>
+      <div class="graphiques">
+        <div class="carte-graph"><h3>Répartition par statut</h3><canvas id="graph-statut"></canvas></div>
+        <div class="carte-graph"><h3>Répartition par priorité</h3><canvas id="graph-priorite"></canvas></div>
+      </div>
+    </section>
+
+    <!-- ===== FORMULAIRE D'AJOUT / MODIFICATION ===== -->
+    <section class="carte">
+      <h2 id="titre-form">Ajouter une tâche</h2>
+      <form id="form-tache">
+        <input type="hidden" id="tache-id">
+        <div class="grille">
+          <label>Titre *<input type="text" id="f-titre" required></label>
+          <label>Responsable<input type="text" id="f-responsable"></label>
+          <label>Statut
+            <select id="f-statut"><option>A faire</option><option>En cours</option><option>Termine</option></select>
+          </label>
+          <label>Priorité
+            <select id="f-priorite"><option>Basse</option><option selected>Moyenne</option><option>Haute</option></select>
+          </label>
+          <label>Avancement (%)<input type="number" id="f-avancement" min="0" max="100" value="0"></label>
+          <label>Échéance<input type="date" id="f-echeance"></label>
+        </div>
+        <div class="actions-form">
+          <button type="submit" class="btn-principal" id="btn-valider">Ajouter</button>
+          <button type="button" class="btn-secondaire" id="btn-annuler" hidden>Annuler</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ===== LISTE DES TACHES ===== -->
+    <section class="carte">
+      <div class="barre-liste">
+        <h2>Tâches</h2>
+        <div class="filtres">
+          <input type="search" id="recherche" placeholder="Rechercher…">
+          <select id="filtre-statut">
+            <option value="">Tous les statuts</option>
+            <option>A faire</option><option>En cours</option><option>Termine</option>
+          </select>
+        </div>
+      </div>
+      <table class="tableau">
+        <thead>
+          <tr><th>Titre</th><th>Responsable</th><th>Statut</th><th>Priorité</th><th>Avancement</th><th>Échéance</th><th></th></tr>
+        </thead>
+        <tbody id="corps-tableau"></tbody>
+      </table>
+      <p id="message-vide" class="vide" hidden>Aucune tâche pour le moment.</p>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

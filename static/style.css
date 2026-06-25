@@ -1,0 +1,68 @@
+:root {
+  --bleu: #0e3a52;
+  --teal: #1b7fa8;
+  --fond: #f4f7f9;
+  --bord: #e1e9ee;
+  --texte: #25313a;
+  --gris: #6b7c86;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: system-ui, -apple-system, Arial, sans-serif; background: var(--fond); color: var(--texte); }
+
+.entete { background: var(--bleu); color: #fff; padding: 24px 32px; }
+.entete h1 { font-size: 24px; }
+.entete p { opacity: .85; margin-top: 4px; font-size: 14px; }
+
+main { max-width: 1000px; margin: 28px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 24px; }
+
+/* --- Tableau de bord --- */
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.kpi { background: #fff; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,.05); }
+.kpi-valeur { display: block; font-size: 30px; font-weight: 700; color: var(--teal); }
+.kpi-label { font-size: 12px; color: var(--gris); text-transform: uppercase; letter-spacing: .5px; }
+.graphiques { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+.carte-graph { background: #fff; border-radius: 12px; padding: 18px; box-shadow: 0 4px 14px rgba(0,0,0,.05); }
+.carte-graph h3 { font-size: 14px; color: var(--bleu); margin-bottom: 10px; }
+.carte-graph canvas { max-height: 220px; }
+
+/* --- Cartes generiques --- */
+.carte { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 4px 14px rgba(0,0,0,.05); }
+.carte h2 { font-size: 18px; color: var(--bleu); margin-bottom: 16px; }
+
+/* --- Formulaire --- */
+.grille { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+label { display: flex; flex-direction: column; font-size: 13px; font-weight: 600; color: var(--bleu); gap: 5px; }
+input, select { padding: 9px 11px; border: 1px solid var(--bord); border-radius: 8px; font-size: 14px; font-family: inherit; }
+.actions-form { margin-top: 18px; display: flex; gap: 10px; }
+.btn-principal { background: var(--teal); color: #fff; border: 0; padding: 11px 22px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+.btn-principal:hover { background: var(--bleu); }
+.btn-secondaire { background: #fff; color: var(--gris); border: 1px solid var(--bord); padding: 11px 18px; border-radius: 8px; cursor: pointer; }
+
+/* --- Liste / tableau --- */
+.barre-liste { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 12px; }
+.filtres { display: flex; gap: 10px; }
+.tableau { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tableau th { text-align: left; padding: 10px; color: var(--gris); font-size: 12px; text-transform: uppercase; border-bottom: 2px solid var(--bord); }
+.tableau td { padding: 11px 10px; border-bottom: 1px solid var(--bord); }
+.tableau tr:hover { background: #f8fbfc; }
+
+.badge { padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.badge.A.faire, .badge.statut-A-faire { background: #fdecea; color: #b3261e; }
+.statut-afaire { background: #fdecea; color: #b3261e; }
+.statut-encours { background: #fff4e0; color: #b26a00; }
+.statut-termine { background: #e3f5ea; color: #1b7a45; }
+.prio-Haute { color: #b3261e; font-weight: 700; }
+.prio-Moyenne { color: #b26a00; }
+.prio-Basse { color: var(--gris); }
+
+.barre-avancement { background: var(--bord); border-radius: 10px; height: 8px; width: 90px; overflow: hidden; display: inline-block; vertical-align: middle; }
+.barre-avancement span { display: block; height: 100%; background: var(--teal); }
+
+.btn-icone { background: none; border: 0; cursor: pointer; font-size: 15px; padding: 4px 6px; border-radius: 6px; }
+.btn-icone:hover { background: var(--fond); }
+.vide { text-align: center; color: var(--gris); padding: 20px; }
+
+@media (max-width: 720px) {
+  .kpis { grid-template-columns: 1fr 1fr; }
+  .graphiques, .grille { grid-template-columns: 1fr; }
+}
